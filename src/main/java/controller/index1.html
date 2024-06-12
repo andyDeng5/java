@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>抽奖游戏</title>
+</head>
+
+<body>
+<button onclick="drawLottery()">抽奖</button>
+<div id="result"></div>
+
+<script>
+    function drawLottery() {
+      fetch('http://localhost:8080/draw')
+     .then(response => response.text())
+            document.getElementById('result').innerHTML = data;
+        })
+     .catch(error => console.error('出错了:', error));
+    }
+  </script>
+</body>
+
+</html>

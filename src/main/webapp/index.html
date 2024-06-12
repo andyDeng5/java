@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>抽奖页面</title>
+    <style>
+        body {
+          font-family: Arial, sans-serif;
+          text-align: center;
+        }
+
+     .lottery-container {
+          padding: 20px;
+          background-color: #f8f9fa;
+          border-radius: 5px;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+     .lottery-btn {
+          padding: 10px 20px;
+          background-color: #4CAF50;
+          color: white;
+          border: none;
+          cursor: pointer;
+          border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+<div class="lottery-container">
+    <h2>抽奖啦！</h2>
+    <button class="lottery-btn" id="drawBtn">开始抽奖</button>
+</div>
+
+<script>
+    const drawBtn = document.getElementById('drawBtn');
+
+    drawBtn.addEventListener('click', async () => {
+      try {
+          fetch('http://localhost:8080/draw')
+     .then(response => response.text())
+     .then(data => {
+            document.getElementById('result').innerHTML = data;
+        })
+     .catch(error => console.error('出错了:', error));
+        if (response.ok) {
+          const result = await response.json();
+          alert(result.message);
+        } else {
+          alert('抽奖出错');
+        }
+      } catch (error) {
+        alert('网络错误');
+      }
+    });
+</script>
+</body>
+
+</html>
